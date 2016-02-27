@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+{% block additional_js %}
+    <script src="{% static "js/jquery.js" %}" type="text/javascript"></script>
+    <script src="{% static "js/imagepool.js" %}" type="text/javascript"></script>
+{% endblock %}
+{% block title %}Праўка навіны :: {{ object.title }}{% endblock %}
+{% block main %}
+    <h2>Праўка навіны</h2>
+    <div class="form">
+        <form action="" method="post">
+            {% include "generic/form.html" %}
+            <div class="submit-button"><input type="submit" value="Захаваць"></div>
+        </form>
+    </div>
+    {% include "generic/file_lister.html" %}
+    <p><a href="{% url "news_index" %}?page={{ pn }}">Назад</a></p>
+{% endblock %}

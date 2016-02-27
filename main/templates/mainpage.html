@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% load thumbnail %}
+{% block title %}Галоўная старонка{% endblock %}
+{% block main %}
+    <h2>Хуткія ровары</h2>
+    <p>Крама &quot;Хуткі ровар&quot; прапануе для набыцця двухколавых сяброў на любы густ: горныя, шасэйныя, гібрыды
+    і спецыяльнага прызначэння. </p>
+    <h3>Навіны</h3>
+    {% for object in news %}
+        <h4><a href="{% url "news_detail" pk=object.pk %}">{{ object.title }}</a></h4>
+        <p>{{ object.description }}</p>
+        <p class="posted">{{ object.posted|date:"j.m.Y H:i:s" }}</p>
+    {% endfor %}
+    <h3>Прапануемыя тавары</h3>
+    <table class="list-table">
+        {% for object in goods %}
+            <tr>
+                <td class="centered"><a href="{% url "goods_detail" pk=object.pk %}">
+                <img src="{% thumbnail object.image "base" %}"></a></td>
+                <td><a href="{% url "goods_detail" pk=object.pk %}">{{ object.name }}</a></td>
+                <td>{{ object.description }}</td>
+                <td class="centered">{% if object.price_acc > 0 %}<span class="old-price">{{ object.price }}</span>
+                <br>{{ object.price_acc }}{% else %}{{ object.price }}{% endif %} Br.</td>
+                <td class="centered">{% if object.in_stock %}У наяўнасці.{% endif %}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

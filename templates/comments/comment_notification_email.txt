@@ -1,0 +1,15 @@
+На сайцы быў пакінуты каментар:
+
+{% if comment.content_type.model == "good" %}
+    - тавар: {{ content_object.name }} (http://localhost:8000{{content_object.get_absosute_url }});
+{% else %}
+    - артыкул блогу: {{ content_object.title }};
+{% endif %}
+    - карыстальнік: {{ comment.user_name }};
+    - электронная пошта: {{ comment.user_email }};
+    - змест: {{ comment.comment }};
+    - дата: {{ comment.submit_date }};
+    - IP-адрэс {{ comment.ip_address }}.
+
+Гіперспасылка на старонку каменрару:
+http://localhost:8000{{ content_object.get_absolute_url }}.
